@@ -1,0 +1,14 @@
+<!-- Dialog Recuperar Clave -->
+<form class=" text-center" style="padding: 1em;">
+  <h6>Ingresar correo registrado en sistema</h6>
+  <br>
+  <mat-form-field appearance="outline">
+    <mat-label for="user">Correo Electrónico</mat-label>
+    <input name="user" style="width: 300px" matInput required placeholder="Correo Electronico" #correo>
+  </mat-form-field>
+  <br>
+  <br>
+  <button mat-dialog-close class="btn btn-warning" (click)="recuperar(correo.value)">
+    Enviar Clave
+  </button>
+</form>

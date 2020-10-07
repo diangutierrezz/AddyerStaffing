@@ -1,0 +1,84 @@
+body{
+    background:  #f8f9f9 ;
+    font-family: 'Muli', sans-serif;
+    padding: 5%;
+
+}
+
+.fa{
+    color:  #000000 ;
+    text-align: center;
+    padding: 30px;
+    font-size: 46px;
+
+}
+
+.card{
+    padding: 15px;
+    margin: 10px;
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.01);
+    transition: box-shadow 0.3s ease-in-out;
+    border:1px solid #ddd;
+    cursor: pointer;
+    border-radius: 4px;
+
+}
+
+.card:hover{
+    background:  #f5b041 ;
+    box-shadow: 0 5px 15px 2px rgba(0, 0, 0, 0.3);
+    background:  #f5b041 ;
+}
+
+h3{
+    text-align: center;
+    font-size: 22px;
+    color:black;
+    font-weight: 600;
+
+}
+
+p{
+    padding: 5px;
+    text-align: center;
+    font-size: 15px;
+    color:black;
+    line-height: 1.6;
+    font-weight: 500;
+    padding-top: 5px;
+
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.menu{
+    margin-top: 2em;
+    display: block;
+}
+
+.menu li{
+    margin-bottom: 15px;
+}
+
+.menu li a{
+    display: block;
+    width: 100%;
+
+}
+
+h1,h2,h3{
+    font-family: verdana
+}
+
+ng-sidebar-container{
+    height: 100vh;
+}
+
+::ng-deep .ng-sidebar{
+    background-color: #f0a500;
+    width: 300px;
+    padding: 2em 3em;
+    box-shadow: 0 0 2.5em rgba(85, 85, 85, 0.5);
+}

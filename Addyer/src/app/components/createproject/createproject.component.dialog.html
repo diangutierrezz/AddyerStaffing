@@ -1,0 +1,45 @@
+  <!--Dialog instrucciones agregar proyecto  -->
+<div class="conteiner ">
+    <div class="cajita2">
+        <h1 class="text-center"> <b>Instrucciones</b> </h1>
+        <h6 class="text-center">Paso a paso para crear un Nuevo Proyecto.</h6>
+        <div class="mt-3 " style="    margin-left: 5%;
+    margin-right: 5%;">
+
+            <div mat-dialog-content>
+                <h3 mat-dialog-title> Paso 1. Crear Proyecto </h3>
+                <p>En este paso se deben llenar los campos con los datos del nuevo proyecto:</p>
+                <ul>
+                    <li>
+                        <p>Nombre del proyecto.</p>
+                    </li>
+                    <li>
+                        <p>Descripción.</p>
+                    </li>
+                    <li>
+                        <p>Fecha de inicio.</p>
+                    </li>
+                    <li>
+                        <p>Fecha de fin.</p>
+                    </li>
+                </ul>
+                <p> Luego se presiona el botón "Siguiente" que lo llevará al segundo paso.</p>
+
+                <h3 class="mt-2"> Paso 2. Agregar Habilidades</h3>
+                <p>Luego deben agregarse al proyecto las habilidades que serán requeridas en el mismo, para ello se
+                    deben seleccionar una por una y presionar el botón "Agregar". Luego de completado este paso se
+                    presiona el botón "Siguiente".</p>
+
+                <h3 class="mt-2">Paso 3: Agregar Colaboradores</h3>
+                <p> En el último paso se deben agregar los coloborares que trabajarán en el nuevo proyecto, estos deben
+                    ser agregados según su cargo o habilidad, para ello se puede hacer una búsqueda por estos dos
+                    criterios, y para vincularlos se debe presionar el botón "Agregar". Al presionar el botón
+                    "Finalizar" serás redirigido a una página donde podrás ver todos los proyectos creados.</p>
+            </div>
+            <div mat-dialog-actions>
+            </div>
+            <button mat-button mat-dialog-close (click)="closeDialog()" class="btn btn-warning" style="    margin-left: 39%;
+            width: 20%;">Cerrar</button>
+        </div>
+    </div>
+</div>

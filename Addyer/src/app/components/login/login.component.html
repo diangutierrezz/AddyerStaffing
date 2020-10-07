@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="card text-center mat-elevation-z4 mt-5 cajita ">
+    <div class="card-header p-4">
+      <h3> Ingresar</h3>
+    </div>
+    <div class="card-body">
+      <img src="https://upsocial.org/sites/default/files/logos/forge.jpg" width="150" alt=""
+        class="img-fluid rounded-circle">
+
+  <!--Formulario login -->
+      <div class="mt-5">
+        <form class=" text-center" style="padding: 1em;" [formGroup]="firstFormGroup">
+          <br>
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label for="user">Correo Electrónico</mat-label>
+              <input name="user" id="user" formControlName="user" matInput required placeholder="Correo Electronico"
+                #correo>
+            </mat-form-field>
+            <div *ngIf="f.user.touched && f.user.invalid " class="alert alert-danger" style="width: 80%;  margin-left: auto;
+        margin-right: auto;">
+              <div *ngIf="f.user.errors.required">Correo Electrónico requerido</div>
+              <div *ngIf="f.user.errors.pattern">Ingrese un Correo Electrónico válido</div>
+            </div>
+          </div>
+          <div class="form-group  display: flex;">
+            <mat-form-field style="width: 80%;  " appearance="outline">
+              <mat-label for="pass">Contraseña</mat-label>
+              <div class="form-row">
+                <div class="col">
+                  <input ID="txtPassword" matInput #contrasena name="contrasena" [type]="show ? 'text' : 'password'"
+                    required formControlName="pass">
+                </div>
+                <div class="col">
+                  <mat-icon placeholder="Contraseña" color="gray" (click)="togglePassword()" style="margin-left: 90%; ">
+                    visibility</mat-icon>
+                </div>
+              </div>
+            </mat-form-field>
+            <div *ngIf="f.pass.touched && f.pass.invalid" class="alert alert-danger" style="width: 80%;  margin-left: auto;
+        margin-right: auto;">
+              <div *ngIf="f.pass.errors.required">Contraseña requerida</div>
+              <div *ngIf="f.pass.errors.minlength">La contraseña debe tener al menos cinco caracteres</div>
+            </div>
+          </div>
+
+          <!--Checkbox recuerdame -->
+          <div>
+            <mat-checkbox color="primary" required style="width: 100%">
+              Recuérdame
+            </mat-checkbox>
+          </div>
+          <!--Recuperar contraseña -->
+          <button class="btn btn-warning mb-4" (click)="loginAdmin(correo.value, contrasena.value)">Ingresar</button>
+          <!-- Recuperar Clave -->
+          <dl><a class="mt-4" (click)="openDialog()">Recuperar Contraseña</a></dl>
+        </form>
+      </div>
+    </div>
+    <!-- Sello Addyer -->
+    <div class="card-footer text-muted">
+      Mesa de Ayuda 22700345
+      <h5 class="card-title text-muted mt-2">Addyer x Forge</h5>
+    </div>
+  </div>
+</div>

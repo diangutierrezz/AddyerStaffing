@@ -1,0 +1,66 @@
+<ng-sidebar-container>
+    <!--Sidebar  -->
+    <ng-sidebar [opened]="opened">
+        <img src="https://scontent.fscl27-1.fna.fbcdn.net/v/t1.0-9/12644943_219927595018951_5026710537365350049_n.png?_nc_cat=105&_nc_sid=09cbfe&_nc_ohc=R7_AAlM-FfwAX9Hm9Iv&_nc_ht=scontent.fscl27-1.fna&oh=28e4b91c260bef52a32a2e3205b24665&oe=5F9EAA1F"
+            width="200" height="200" class="img-fluid rounded-circle" />
+        <p style="padding-left: 1.5em; margin-top: 1em;">Sesión Colaborador</p>
+        <a mat-raised-button style="margin: 2em; background-color: #000000; color: #f4f4f4;"
+            (click)='toggleSidebar()'>Cerrar menú </a>
+        <ul class="menu">
+             <!--Menu -->
+            <li><a style="color: #000000;" routerLink="/homecolab" (click)="toggleSidebar()">Inicio</a></li>
+            <li><a style="color: #000000;" routerLink="/profilecolab" (click)="toggleSidebar()">Perfil Colaborador</a>
+            </li>
+            <li><a style="color: #000000;" routerLink="/viewprojectscolab" (click)="toggleSidebar()">Proyectos
+                    Asignados</a></li>
+        </ul>
+    </ng-sidebar>
+    <div ng-sidebar-content>
+        <!--Toolbar  -->
+        <mat-toolbar style="background-color: #000000; ">
+            <a mat-raised-button style="background-color: #cf7500; color: #f4f4f4;" (click)="toggleSidebar()">Abrir menú
+            </a>
+            <span class="example-spacer"></span>
+            <a mat-raised-button style="margin-left: 1em;" routerLink="" (click)="cerrarsesion()">Cerrar Sesión</a>
+        </mat-toolbar>
+        <!--Cards con los proyectos  -->
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <title>Proyectos</title>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+            <link rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <style type="text/css">
+                @import url('https://fonts.googleapis.com/css?family=Muli:300,400,600,700&display=swap');
+            </style>
+        </head>
+        <body>
+
+             <!--Cards para proyectos -->
+            <div class="container " style="    width: 80%;">
+                <h1 class="text-black text-center pb-2">Proyectos</h1>
+                <div class="row">
+                    <div>
+                        <div class="card" *ngFor="let proyecto of proyectos">
+                            <i class="fa fa-archive"></i>
+                            <h3>{{proyecto.nombreproyecto}}</h3>
+                            <p style="width: 60%; margin: auto; text-align: justify; " class="mt-2">
+                                {{proyecto.descripcion}}</p>
+                            <p class="mt-4"><b>Fecha de inicio: </b> {{proyecto.fechainicio}}</p>
+                            <p> <b>Fecha de final:</b> {{proyecto.fechafinal}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </body>
+        </html>
+
+<!--Final de sidebar  -->
+    </div>
+ <!--Fin sidebar  -->
+
+ 
+</ng-sidebar-container>

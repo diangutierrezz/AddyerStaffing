@@ -1,0 +1,339 @@
+<ng-sidebar-container>
+  <!--Sidebar  -->
+  <ng-sidebar [opened]="opened">
+    <img
+      src="https://scontent.fscl27-1.fna.fbcdn.net/v/t1.0-9/12644943_219927595018951_5026710537365350049_n.png?_nc_cat=105&_nc_sid=09cbfe&_nc_ohc=R7_AAlM-FfwAX9Hm9Iv&_nc_ht=scontent.fscl27-1.fna&oh=28e4b91c260bef52a32a2e3205b24665&oe=5F9EAA1F"
+      width="200" height="200" class="img-fluid rounded-circle" />
+    <p style="padding-left: 1.5em; margin-top: 1em">Sesión Administrador</p>
+    <a mat-raised-button style="margin: 2em; background-color: #000000; color: #f4f4f4" (click)="toggleSidebar()">Cerrar
+      menú
+    </a>
+    <!--Menu  -->
+    <ul class="menu">
+      <li><a style="color: #000000" routerLink="/homeadmin" (click)="toggleSidebar()">Inicio</a></li>
+      <li><a style="color: #000000" routerLink="/profileadmin" (click)="toggleSidebar()">Perfil</a></li>
+      <li><a style="color: #000000" routerLink="/viewprojectsadmin" (click)="toggleSidebar()">Ver Proyectos</a></li>
+      <li><a style="color: #000000" routerLink="/createproject" (click)="toggleSidebar()">Crear Proyectos</a></li>
+      <li><a style="color: #000000" routerLink="/addusser" (click)="toggleSidebar()">Agregar Colaboradores</a></li>
+      <li><a style="color: #000000" routerLink="/viewcolabs" (click)="toggleSidebar()">Ver Colaboradores</a></li>
+    </ul>
+  </ng-sidebar>
+  <div ng-sidebar-content>
+    <!--Toolbar -->
+    <mat-toolbar style="background-color: #000000">
+      <a mat-raised-button style="background-color: #cf7500; color: #f4f4f4" (click)="toggleSidebar()">Abrir menú
+      </a>
+      <span class="example-spacer"></span>
+      <a mat-raised-button style="margin-left: 1em" routerLink="" (click)="cerrarsesion()">Cerrar Sesión</a>
+    </mat-toolbar>
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+
+      <title>Proyectos</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+      <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+      <style type="text/css">
+        @import url("https://fonts.googleapis.com/css?family=Muli:300,400,600,700&display=swap");
+      </style>
+    </head>
+
+    <body>
+      <!--Cards de proyecto -->
+      <div class="container" style="    width: 80%;">
+        <h1 class="text-black text-center pb-2">Proyectos</h1>
+
+        <div class="mx-auto">
+          <div class="card" *ngFor="let proyecto of proyectos">
+           
+            <i class="fa fa-archive"></i>
+
+            <h3><b>{{ proyecto.nombreproyecto }}</b></h3>
+
+            <div class="panel-group" id="accordion">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h6 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="{{ '#collapse-' + proyecto.id }}"
+                      [type]="show ? 'Ver más' : 'Ver Menos'" (click)="mostrarInfo()"
+                      style="margin-left: 45%;"> {{VM}}
+                    </a>
+                  </h6>
+                </div>
+                <div id="{{ 'collapse-' + proyecto.id }}" class="panel-collapse collapse in">
+                  <div class="panel-body">
+
+                    <div style="width: 60%; margin: auto; text-align: justify; ">
+                      <!--Datos del proyecto -->
+                      <p>{{ proyecto.descripcion }}</p>
+                    </div>
+                    <p><b>Inicia el: </b> {{ proyecto.fechainicio }}</p>
+                    <p><b>Finaliza el: </b>{{ proyecto.fechafinal }}</p>
+                    <div class="container">
+                      
+                      <p>
+                        <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                          <button mat-mini-fab color="#cf7500">
+                            <mat-icon >
+                              create</mat-icon>
+                          </button>
+                        </a>
+        
+                      </p>
+                      <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                          <h3 class="text-center">Modificar Proyecto</h3>
+                          <form>
+                            <div class="form-group">
+                              <label class="mt-2">Nombre del Proyecto</label>
+                              <input type="text" name="nombreproyecto" class="form-control" id="exampleFormControlInput1"
+                                placeholder="Nuevo nombre" [(ngModel)]="proyecto.nombreproyecto" >
+                            </div>
+                            <div class="form-group">
+                              <label for="descripcion">Descripción del Proyecto</label>
+                              <textarea class="form-control" name="descripcion" id="descripcion" rows="3"
+                                [(ngModel)]="proyecto.descripcion"></textarea>
+                            </div>
+                            <div class="form-group">
+                              <label>Fecha de Inicio</label>
+                              <input type="text" class="form-control" name="fechainicio" id="inicio" placeholder="MM-DD-AAAA"
+                                [(ngModel)]="proyecto.fechainicio">
+                            </div>
+                            <div class="form-group">
+                              <label>Fecha de Término</label>
+                              <input type="text" class="form-control" name="fechafinal" id="final" placeholder="MM-DD-AAAA"
+                                [(ngModel)]="proyecto.fechafinal">
+                            </div>
+ <div class="modal-footer mb-3">
+                          <button type="button" class="btn btn-warning" style="background-color: #fa7d09;
+                          width: 30%;" data-dismiss="modal" (click)="modificarProyecto(proyecto,proyecto.id)"> Guardar Cambios </button>
+                        
+                        </div>
+
+                          </form>
+                        </div>
+                        <!-- pie del diálogo -->
+                       
+
+                        </div>
+                      </div>
+                    </div>
+                   
+                    <p>
+                      <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1"
+                        (click)="habilidadesProyecto(proyecto.id)" role="button" aria-expanded="false"
+                        class="btn btn-warning " style="margin-right: 70px" aria-controls="multiCollapseExample1">Ver
+                        las Habilidades de este proyecto</a>
+
+                      <button class="btn btn-primary" type="button" data-toggle="collapse"
+                        data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2"
+                        class="btn btn-warning" style="margin-left: 70px" (click)="mostrarColab(proyecto.id)">
+                        Ver colaboradores de este proyecto
+                      </button>
+                    </p>
+                    <div class="row">
+                      <div class="col">
+                        <div class="collapse multi-collapse" id="multiCollapseExample1">
+                          <div class="card card-body">
+                            <b class="text-center">Habilidades requeridas:</b>
+
+                            <div style="width: 100%; margin: 1em auto" class="cajita2">
+                              <!--Tabla habilidades del proyecto -->
+                              <mat-table [dataSource]="hab">
+                                <ng-container matColumnDef="habilidad">
+                                  <mat-header-cell *matHeaderCellDef>
+                                    <th><b>Habilidades</b></th>
+                                  </mat-header-cell>
+                                  <mat-cell *matCellDef="let hab">{{hab.habilidad}}</mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="botondeEliminar">
+                                  <mat-header-cell *matHeaderCellDef>
+                                    <th><b>Eliminar</b></th>
+                                  </mat-header-cell>
+                                  <mat-cell *matCellDef="let hab; index as i ">
+                                    <button mat-mini-fab color="warn">
+                                      <mat-icon (click)=" borrarHabilidadProyecto(i, proyecto.id, hab.id)">delete
+                                      </mat-icon>
+                                    </button>
+                                  </mat-cell>
+                                </ng-container>
+                                <mat-header-row *matHeaderRowDef="columnasH"></mat-header-row>
+                                <mat-row *matRowDef="let myRowData; columns: columnasH "></mat-row>
+                              </mat-table>
+                            </div>
+                            <!-- Fin Tabla  -->
+                            <button data-target="#AGREGARHABILIDAD" data-toggle="modal" class="btn btn-warning"
+                              (click)="obtenerHabilidades(proyecto.id)">
+                              AGREGAR
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="collapse multi-collapse" id="multiCollapseExample2">
+                          <div class="card card-body">
+                            <b class="text-center">Colaboradores:</b>
+                            <div style="width: 100%; margin: 1em auto" class="cajita2">
+                              <!--Tabla colaboradores del proyecto -->
+                              <mat-table [dataSource]="colabProyecto">
+                                <ng-container matColumnDef="nombre">
+                                  <mat-header-cell *matHeaderCellDef>
+                                    <b>Nombre</b>
+                                  </mat-header-cell>
+                                  <mat-cell *matCellDef="let colabProyecto">{{colabProyecto.nombre}}</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="apellido">
+                                  <mat-header-cell *matHeaderCellDef>
+                                    <b>Apellido</b>
+                                  </mat-header-cell>
+                                  <mat-cell *matCellDef="let colabProyecto">{{colabProyecto.apellido}}</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="cargo">
+                                  <mat-header-cell *matHeaderCellDef>
+                                    <b>Cargo</b>
+                                  </mat-header-cell>
+                                  <mat-cell *matCellDef="let colabProyecto">{{colabProyecto.cargo}}</mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="botonEliminar">
+                                  <mat-header-cell *matHeaderCellDef>
+                                    <b>Eliminar</b>
+                                  </mat-header-cell>
+                                  <mat-cell *matCellDef="let colabProyecto; index as P">
+                                    <button mat-mini-fab color="warn" (click)="borrarUsuarioProyecto(P,proyecto.id,colabProyecto.id_usuario)">
+                                      <mat-icon>delete</mat-icon>
+                                    </button>
+                                  </mat-cell>
+                                </ng-container>
+                                <mat-header-row *matHeaderRowDef="columnas"></mat-header-row>
+                                <mat-row *matRowDef="
+                                      let myRowData;
+                                      columns: columnas
+                                    "></mat-row>
+                              </mat-table>
+                            </div>
+                            <!-- Fin Tabla  -->
+                            <button data-target="#AGREGARUSUARIO" data-toggle="modal" class="btn btn-warning"
+                              (click)="AgregarUsuario(proyecto.id)">
+                              AGREGAR
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+    </body>
+
+    </html>
+  </div>
+</ng-sidebar-container>
+<!-- MODAL AgregarUsuario -->
+<div class="modal fade" id="AGREGARUSUARIO">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <!-- cabecera del diálogo -->
+      <div class="text-center">
+        <h4 class="modal-title mt-4"> <b>Agregar Usuarios a este Proyecto</b> </h4>
+      </div>
+
+      <!-- cuerpo del diálogo -->
+      <div class="modal-body">
+        <div style="width: 90%; margin: 1em auto" class="mat-elevation-z2 cajita2">
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <input type="text" class="form-control" name="filterPost"
+                  placeholder="Buscar Colaboradores por nombre, habilidades o cargo" [(ngModel)]="filterPost" />
+              </div>
+            </div>
+          </div>
+          <!-- Tabla con todos los colaboradores -->
+          <div class="row">
+            <div class="col">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>NOMBRE</th>
+                    <th>APELLIDO</th>
+                    <th>CORREO</th>
+                    <th>CARGO</th>
+                    <th>HABILIDADES</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor=" let usuarioHabilidad of usuarioHabilidad| filter: filterPost; index as i ">
+                    <td>{{ usuarioHabilidad.id_usuario }}</td>
+                    <td>{{ usuarioHabilidad.nombre }}</td>
+                    <td>{{ usuarioHabilidad.apellido }}</td>
+                    <td>{{ usuarioHabilidad.cargo }}</td>
+                    <td>{{ usuarioHabilidad.habilidad }}</td>
+                    <td><button mat-raised-button (click)="guardarNuevoUsuarioProyecto(i)"
+                        [disabled]="estadoBoton[i]">AGREGAR</button></td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- Fin Tabla  -->
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-dismiss="modal" style="    width: 30%;
+          margin-left: 15%;" (click)="finalizar()">
+            Finalizar
+          </button>
+          <button data-dismiss="modal" class="btn btn-danger d-block mx-auto mt-2"
+            style="border-bottom-style: solid; width: 30%"> Cancelar </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL AgregarHabilidad  -->
+  </div>
+</div>
+<div>
+  <div class="modal fade" id="AGREGARHABILIDAD">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <!-- cabecera del diálogo -->
+        <div class="modal-header">
+          <h4 class="modal-title">Agregar nueva habilidad al Proyecto</h4>
+        </div>
+
+        <!-- cuerpo del diálogo -->
+
+        <div class="modal-body">
+          <!-- Select de las habilidades -->
+          <select class="form-control" style="width: 50%; margin-left: auto; margin-right: auto" name="miselect"
+            placeholder="Seleccione una Habilidad" [(ngModel)]="habilidadSeleccionada" required>
+            <option [value]="habilidad.habilidad" *ngFor="let habilidad of habilidades">
+              {{ habilidad.habilidad }}
+            </option>
+          </select>
+        </div>
+
+        <!-- pie del diálogo -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-dismiss="modal" style="    width: 30%;
+          margin-left: 15%;" (click)="agregarProyectoHabilidades()">
+            Agregar nueva Habilidad
+          </button>
+          <button data-dismiss="modal" class="btn btn-danger d-block mx-auto mt-2"
+            style="border-bottom-style: solid; width: 30%"> Cancelar </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

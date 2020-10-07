@@ -1,0 +1,39 @@
+  <!--Dialog instrucciones agregar usuario  -->
+<div class="container">
+    <h1 mat-dialog-title class="text-center">Instrucciones</h1>
+    <h6 class="text-center">Paso a paso para crear un Nuevo Colaborador.</h6>
+    <div mat-dialog-content class="mt-4" style="    margin-left: 5%;
+    margin-right: 5%;">
+        
+        <h3>Paso 1: Agregar datos personales</h3>
+        <p> En este paso se deben llenar los campos con los datos personales del nuevo colaborador:</p>
+         <ul>
+            <li>
+                <p>Designar Rol (Administrador o Colaborador) del nuevo usuario.</p>    
+            </li>
+            <li>
+                <p>Nombre.</p>    
+            </li>
+            <li>
+                <p>Apellido.</p>    
+            </li>
+            <li>
+                <p>Correo electrónico.</p>    
+            </li>
+            <li>
+                <p>Contraseña.</p>    
+            </li>
+            <li>
+                <p>Cargo (Mentor, Tutor, Cordinador, Ayudante, Profesor de habilidades blandas, Profesor de programación).</p>    
+            </li>
+        </ul>
+        <p> Luego se presiona el botón "Siguiente" que lo llevará al segundo paso.</p>
+        <h3 class="mt-2">Paso 2: Agregar Habilidades</h3>
+        <p style="text-justify: auto;"> Luego deben agregarse las habilidades que posee el colaborador, para ello se deben seleccionar una por una y presionar el botón "Agregar". Al presionar el botón "Finalizar" serás redirigido a una página donde podrás ver todos los colaboradores creados. </p>
+    </div>
+    <div mat-dialog-actions>
+    <button mat-button mat-dialog-close (click)="closeDialog()" class="btn btn-warning mt-2"
+    style="    margin-left: 41%;
+            width: 20%;" >Cerrar</button>
+    </div>
+    </div>

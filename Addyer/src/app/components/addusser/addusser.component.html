@@ -1,0 +1,199 @@
+<ng-sidebar-container>
+  <!--Sidebar  -->
+  <ng-sidebar [opened]="opened">
+    <img
+      src="https://scontent.fscl27-1.fna.fbcdn.net/v/t1.0-9/12644943_219927595018951_5026710537365350049_n.png?_nc_cat=105&_nc_sid=09cbfe&_nc_ohc=R7_AAlM-FfwAX9Hm9Iv&_nc_ht=scontent.fscl27-1.fna&oh=28e4b91c260bef52a32a2e3205b24665&oe=5F9EAA1F"
+      width="200" height="200" class="img-fluid rounded-circle" />
+    <p style="padding-left: 1.2em; margin-top: 1em;">Sesión Administrador</p>
+    <a mat-raised-button style="margin: 2em; background-color: #000000; color: #f4f4f4;"
+      (click)='toggleSidebar()'>Cerrar menú </a>
+    <ul class="menu">
+      <li><a style="color: #000000;" routerLink="/homeadmin" (click)="toggleSidebar()">Inicio</a></li>
+      <li><a style="color: #000000;" routerLink="/profileadmin" (click)="toggleSidebar()">Perfil</a></li>
+      <li><a style="color: #000000;" routerLink="/viewprojectsadmin" (click)="toggleSidebar()">Ver Proyectos</a></li>
+      <li><a style="color: #000000;" routerLink="/createproject" (click)="toggleSidebar()">Crear Proyectos</a></li>
+      <li><a style="color: #000000;" routerLink="/addusser" (click)="toggleSidebar()">Agregar Colaboradores</a></li>
+      <li><a style="color: #000000;" routerLink="/viewcolabs" (click)="toggleSidebar()">Ver Colaboradores</a></li>
+
+    </ul>
+  </ng-sidebar>
+  <!--Toolbar -->
+  <div ng-sidebar-content>
+    <mat-toolbar style="background-color: #000000; ">
+      <a mat-raised-button style="background-color: #cf7500; color: #f4f4f4;" (click)="toggleSidebar()">Abrir menú </a>
+      <span class="example-spacer"></span>
+      <a mat-raised-button style="margin-left: 1em;" routerLink="">Cerrar Sesión</a>
+    </mat-toolbar>
+
+    <div class="container">
+      <!--STEPPER-->
+      <mat-horizontal-stepper #stepper>
+        <!--PRIMERA VENTANA STEPPER -->
+        <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+          <!-- Inicio Formulario  -->
+          <div style=" margin-left: auto; margin-right: auto;" class="cajita">
+            <form class="text-center" style="padding: 1em;" [formGroup]="firstFormGroup">
+              <ng-template matStepLabel>Crear Usuario</ng-template>
+              <div class="p-4">
+                <h3>Agregar datos personales</h3>
+              </div>
+              <mat-icon style="cursor: pointer;" (click)="openDialog()">article</mat-icon>
+              <hr>
+              <div class="form-group">
+                <mat-form-field appearance="outline">
+                  <mat-label for="rol">Rol</mat-label>
+                  <mat-select matInput id="rol" formControlName="rol" #rol>
+                    <mat-option *ngFor="let rols of rols" [value]="rols"> {{rols}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <div *ngIf="f.rol.touched && f.rol.invalid" class="alert alert-danger" style="width: 80%;  margin-left: auto;
+              margin-right: auto;">
+                  <div *ngIf="f.rol.errors.required">Rol requerido</div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <mat-form-field appearance="outline">
+                  <mat-label for="nombre">Nombre</mat-label>
+                  <input matInput id="nombre" formControlName="nombre" required placeholder="Nombre del Colaborador"
+                    #nombre>
+                </mat-form-field>
+                <div *ngIf="f.nombre.touched && f.nombre.invalid " class="alert alert-danger" style="width: 80%;  margin-left: auto;
+              margin-right: auto;">
+                  <div *ngIf="f.nombre.errors.required">Nombre requerido</div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <mat-form-field appearance="outline">
+                  <mat-label for="apellido">Apellido</mat-label>
+                  <input matInput id="apellido" formControlName="apellido" required
+                    placeholder="Apellido del Colaborador" #apellido>
+                </mat-form-field>
+                <div *ngIf="f.apellido.touched && f.apellido.invalid" class="alert alert-danger" style="width: 80%;  margin-left: auto;
+              margin-right: auto;">
+                  <div *ngIf="f.apellido.errors.required">Apellido requerido</div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <mat-form-field appearance="outline">
+                  <mat-hint>Ingrese un Rut sin puntos ni guion</mat-hint>
+                  <mat-label for="rut">Rut</mat-label>
+                  <input matInput id="rut" formControlName="rut" required placeholder="12.345.678-9" formatRut
+                    minlength="8" maxlength="9" #rut>
+                </mat-form-field>
+                <div *ngIf="f.rut.touched && f.rut.invalid" class="alert alert-danger" style="width: 80%;  margin-left: auto;
+              margin-right: auto;">
+                  <div *ngIf="f.rut.errors.required">Rut requerido</div>
+                  <div *ngIf="f.rut.errors.pattern">Ingrese un Rut válido</div>
+                  <div *ngIf="f.rut.errors.minlength">Ingrese un Rut válido </div>
+                  <div *ngIf="f.rut.errors.maxlength">Ingrese un Rut válido </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <mat-form-field appearance="outline">
+                  <mat-label for="correo">Correo Electrónico</mat-label>
+                  <input type="email" matInput id="correo" formControlName="correo" required
+                    placeholder="correo@ejemplo.com" id="email" #correo>
+                </mat-form-field>
+                <div *ngIf="f.correo.touched && f.correo.invalid" class="alert alert-danger" style="width: 80%;  margin-left: auto;
+              margin-right: auto;">
+                  <div *ngIf="f.correo.errors.required">Correo Electrónico requerido</div>
+                  <div *ngIf="f.correo.errors.pattern">Ingrese un Correo Electrónico válido</div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <mat-form-field appearance="outline">
+
+                  <mat-label for="contrasena" style="margin-top: 2em;">Contraseña</mat-label>
+                  <input type="password" matInput id="contrasena" formControlName="contrasena" minlength="5"
+                    maxlength="10" #contrasena>
+                </mat-form-field>
+                <div *ngIf="f.contrasena.touched && f.contrasena.invalid" class="alert alert-danger" style="width: 80%;  margin-left: auto;
+              margin-right: auto;">
+                  <div *ngIf="f.contrasena.errors.required">Contraseña requerida</div>
+                  <div *ngIf="f.contrasena.errors.minlength">La contraseña debe tener al menos cinco caracteres</div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <mat-form-field appearance="outline">
+                  <mat-label for="cargo">Cargo</mat-label>
+                  <mat-select matInput id="cargo" formControlName="cargo" #cargo>
+                    <mat-option *ngFor="let cargos of cargos" [value]="cargos"> {{cargos}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <div *ngIf="f.cargo.touched && f.cargo.invalid" class="alert alert-danger" style="width: 80%;  margin-left: auto;
+              margin-right: auto;">
+                  <div *ngIf="f.cargo.errors.required">Cargo requerido</div>
+                </div>
+              </div>
+              <!-- ENVIAR FORMULARIO  -->
+              <div>
+                <button class="btn btn-warning" style="margin-bottom: 2em;"
+                  (click)="crearUsuario(rol.value,nombre.value,apellido.value,rut.value,correo.value,contrasena.value,cargo.value,stepper)">Siguiente</button>
+              </div>
+              <hr>
+              <div class="text-muted">
+                Mesa de Ayuda 22700345
+                <h5 class="text-muted mt-2">Addyer x Forge</h5>
+              </div>
+            </form>
+          </div>
+        </mat-step>
+        <!-- SEGUNDO STEPPER -->
+
+        <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+          <div style=" margin-left: auto; margin-right: auto;" class="cajita2">
+            <form class="text-center" style="padding: 1em;" [formGroup]="secondFormGroup">
+              <ng-template matStepLabel>Agregar Habilidades</ng-template>
+              <div class="p-4">
+                <h3>Agregar habilidades</h3>
+              </div>
+              <hr>
+              <form class=" text-center" style="padding: 1em;">
+
+                <mat-label>
+                  <h5>Seleccione una habilidad</h5>
+                </mat-label>
+
+                <select class="form-control" style="width: 50%;  margin-left: auto; 
+              margin-right: auto;" name="miselect" placeholder="Seleccione una Habilidad"
+                  [(ngModel)]="habilidadElegida" required>
+                  <option [value]="habilidad.habilidad" *ngFor="let habilidad of habilidades">
+                    {{ habilidad.habilidad }}
+                  </option>
+                </select>
+
+                <br>
+                <button class="btn btn" style="background-color: #cf7500; color: #f4f4f4;"
+                  (click)="crearUsuarioHabilidad(rut.value)">Agregar</button>
+                <div *ngIf="mostrarAlerta" style="width: 80%;  margin-left: auto;
+            margin-right: auto;" class="alert alert-success mt-4" role="alert">
+                  <p class="mt-2">{{mensaje}}</p>
+                </div>
+
+              </form>
+              <div>
+                <button class="btn btn-warning" matStepperNext routerLink="/viewcolabs">Finalizar</button>
+              </div>
+              <hr>
+              <div class="text-muted">
+                Mesa de Ayuda 22700345
+                <h5 class="text-muted mt-2">Addyer x Forge</h5>
+              </div>
+              <!-- FINAL DEL FORMULARIO -->
+            </form>
+          </div>
+        </mat-step>
+        <!-- FINAL DEL STEPPER  -->
+      </mat-horizontal-stepper>
+    </div>
+    <!-- FINAL DEL SIDEBAR  -->
+  </div>
+</ng-sidebar-container>

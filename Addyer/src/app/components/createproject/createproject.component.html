@@ -1,0 +1,192 @@
+<ng-sidebar-container>
+  <!--Sidebar  -->
+  <ng-sidebar [opened]="opened">
+    <img
+    src="https://scontent.fscl27-1.fna.fbcdn.net/v/t1.0-9/12644943_219927595018951_5026710537365350049_n.png?_nc_cat=105&_nc_sid=09cbfe&_nc_ohc=R7_AAlM-FfwAX9Hm9Iv&_nc_ht=scontent.fscl27-1.fna&oh=28e4b91c260bef52a32a2e3205b24665&oe=5F9EAA1F"
+    width="200" height="200" class="img-fluid rounded-circle" />
+      <p style="padding-left: 1.2em; margin-top: 1em;">Sesión Administrador</p>
+      <a mat-raised-button style="margin: 2em; background-color: #000000; color: #f4f4f4;" (click)='toggleSidebar()'>Cerrar menú </a>
+      <ul class="menu">
+        <li><a style="color: #000000;" routerLink="/homeadmin" (click)="toggleSidebar()">Inicio</a></li>
+        <li><a style="color: #000000;" routerLink="/viewprojectsadmin" (click)="toggleSidebar()">Ver Proyectos</a></li>
+        <li><a style="color: #000000;" routerLink="/createproject" (click)="toggleSidebar()">Crear Proyectos</a></li>
+        <li><a style="color: #000000;" routerLink="/addusser" (click)="toggleSidebar()">Agregar Colaboradores</a></li>
+        <li><a style="color: #000000;" routerLink="/viewcolabs" (click)="toggleSidebar()">Ver Colaboradores</a></li>
+      </ul>
+  </ng-sidebar>
+  <!--Toolbar -->
+  <div ng-sidebar-content>
+    <mat-toolbar style="background-color: #000000; ">
+      <a mat-raised-button style="background-color: #cf7500; color: #f4f4f4;" (click)="toggleSidebar()">Abrir menú </a>
+      <span class="example-spacer"></span>
+      <a mat-raised-button style="margin-left: 1em;" routerLink="">Cerrar Sesión</a>
+    </mat-toolbar>
+    <!--Page Body  -->
+
+    <!--STEPPER-->
+    <div class="container">
+    <mat-horizontal-stepper  #stepper>
+      <!--PRIMERA VENTANA-->
+      
+      <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+        <!-- Inicio Formulario  -->
+        <div style=" margin-left: auto; margin-right: auto;" class="cajita2">
+          <form class="text-center" style="padding: 1em;" [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Crear Nuevo Proyecto</ng-template>
+            <div class="p-4"><h3>Crear Proyecto</h3></div> <mat-icon style="cursor: pointer;" (click)="openDialog()">article</mat-icon>
+            <hr>
+
+            <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label for="nombre">Nombre del Proyecto</mat-label>
+              <input matInput id="nombre" formControlName="nombre" placeholder="Nombre del Proyecto"   [(ngModel)]="nombreproyecto" #nombrepr>
+            </mat-form-field>
+            <div *ngIf="f.nombre.touched && f.nombre.invalid " class="alert alert-danger" style="width: 80%;  margin-left: auto;
+            margin-right: auto;">
+              <div *ngIf="f.nombre.errors.required">Nombre requerido</div>
+          </div>
+          </div>
+
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label for="descripcion">Descripción</mat-label>
+              <textarea matInput id="descripcion" formControlName="descripcion" placeholder="Descripción del Proyecto"  #descripcion></textarea>
+            </mat-form-field>
+            <div *ngIf="f.descripcion.touched && f.descripcion.invalid " class="alert alert-danger" style="width: 80%;  margin-left: auto;
+            margin-right: auto;">
+              <div *ngIf="f.descripcion.errors.required">Descripción requerida</div>
+          </div>
+          </div>
+
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label for="inicio">Fecha de Inicio</mat-label>
+              <input matInput id="inicio" [matDatepicker]="picker1" required formControlName="inicio"  placeholder="Inicio del Proyecto" [(ngModel)]="fechainicio" #fechai>
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+            <div *ngIf="f.inicio.touched && f.inicio.invalid " class="alert alert-danger" style="width: 80%;  margin-left: auto;
+            margin-right: auto;">
+              <div *ngIf="f.inicio.errors.required">Fecha de Inicio requerida</div>
+          </div>
+          </div>
+
+
+
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label for="final">Fecha de Término</mat-label>
+              <input matInput id="final" [matDatepicker]="picker2" required formControlName="final" placeholder="Finalización del Proyecto" #fechafinal>
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2 color="primary"></mat-datepicker>
+            </mat-form-field>
+            <div *ngIf="f.final.touched && f.final.invalid " class="alert alert-danger" style="width: 80%;  margin-left: auto;
+            margin-right: auto;">
+              <div *ngIf="f.final.errors.required">Fecha de Término requerida</div>
+          </div>
+          </div>
+          <!-- Enviar Formulario  -->
+            <div>
+              <button  class="btn btn-warning" style="margin-bottom: 2em;"
+               (click)="crearProyecto(nombrepr.value, descripcion.value, fechai.value, fechafinal.value, stepper)" 
+               >Siguiente</button>
+            </div>
+            <hr>
+            <div class="text-muted">
+              Mesa de Ayuda 22700345 
+              <h5 class="card-title text-muted mt-2">Addyer x Forge</h5>
+            </div>
+          </form>
+        </div>
+      </mat-step>
+
+
+      <!---SEGUNDA VENTANA-->
+
+      <mat-step [editable]="isEditable">
+        <div style=" margin-left: auto; margin-right: auto;" class="cajita2">
+        <form class="text-center" style="padding: 1em;">
+          <ng-template matStepLabel>Agregar Habilidades</ng-template>
+          <div class="p-4"><h5>Agregar habilidades al proyecto</h5></div> 
+          <hr>
+          <form class=" text-center" style="padding: 1em;">
+
+            <mat-label><h5>Seleccione una habilidad</h5></mat-label>
+            <select class="form-control mt-4" style="width: 80%;  margin-left: auto; 
+            margin-right: auto; " name="miselect" placeholder="Seleccione una Habilidad" [(ngModel)]="habilidadElegida"
+              required>
+              <option [value]="habilidades.habilidad" *ngFor="let habilidades of habilidades">{{habilidades.habilidad}}</option>
+            </select>
+            <br>
+            <button class="btn btn" style="background-color: #cf7500; color: #f4f4f4;"
+            (click)="crearProyectoHabilidad(nombrepr.value, fechai.value)"
+              >Agregar</button>
+            <div  *ngIf="mostrarAlerta" style="width: 80%;  margin-left: auto;
+          margin-right: auto;" class="alert alert-success mt-4" role="alert">
+              <p class="mt-2">{{mensaje}}</p>
+            </div>
+            
+          </form>
+          <div>
+            <button class="btn btn-warning" matStepperNext >Siguiente</button>
+          </div>
+          <hr>
+          <div class="text-muted">
+            Mesa de Ayuda 22700345 
+            <h5 class="text-muted mt-2">Addyer x Forge</h5>
+          </div>
+          <!-- Final Formulario -->
+        </form>
+      </div>
+      </mat-step>
+
+      <!--TERCERA VENTANA-->
+
+      <mat-step [stepControl]="thirdFormGroup" [editable]="isEditable">
+          <ng-template matStepLabel>Agregar Colaborador</ng-template>
+            <h1 class="text-black text-center pb-2 mt-4">Agregar Colaboradores al proyecto</h1>
+                <div style="width: 90%; margin: 1em auto;" class="mat-elevation-z2 cajita3">
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <input type="text" class="form-control" name="filterPost" placeholder="Buscar Colaboradores por nombre, habilidades o cargo" [(ngModel)]="filterPost">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <table class="table table-striped">
+                      <thead >
+                        <tr>
+                          <th>NOMBRE</th>
+                          <th>APELLIDO</th>
+                          <th>CARGO</th>
+                          <th>HABILIDADES</th>
+                          <th>AGREGAR</th>
+                        </tr>
+                      </thead>
+                      <tbody >
+                        <tr *ngFor="let usuariox of usuarioxHabilidad | filter:filterPost; index as i">
+                          <td>{{usuariox.nombre}}</td>
+                          <td>{{usuariox.apellido}}</td>                          
+                          <td>{{usuariox.cargo}}</td>
+                          <td>{{usuariox.habilidad}}</td>
+                          <td><button mat-raised-button 
+                             (click)="guardarIndex(i, fechai.value)" [disabled]="estadoBoton[i]">Agregar</button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  </div>
+                </div>
+                <button class="btn btn-warning d-block mx-auto mt-4" style="border-bottom-style: solid; width: 30%;" routerLink="/viewprojectsadmin">Finalizar</button>
+              
+      </mat-step>
+
+      <!--FIN STEPPER-->
+
+    </mat-horizontal-stepper>
+  </div>
+    <!--final sidebar  -->
+  </div>
+</ng-sidebar-container>

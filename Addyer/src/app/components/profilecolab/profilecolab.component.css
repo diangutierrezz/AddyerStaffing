@@ -1,0 +1,74 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+ng-sidebar-container{
+  height: 100vh;
+
+}
+
+::ng-deep .ng-sidebar{
+  background-color: #f0a500;
+  width: 300px;
+  padding: 2em 3em;
+  box-shadow: 0 0 2.5em rgba(85, 85, 85, 0.5);
+
+}
+
+mat-header-cell{
+  background-color: rgb(240, 231, 231);
+}
+
+.menu{
+  margin-top: 2em;
+  display: block;
+
+}
+
+.menu li{
+  margin-bottom: 15px;
+
+}
+
+.menu li a{
+  display: block;
+  width: 100%;  
+
+}
+
+.example-chip-list {
+  width: 100%;
+
+}
+
+.cajita{
+  border-radius: 82px 82px 82px 82px;
+  border: rgb(204, 176, 117) 3px solid;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.cajita2{
+  border: rgb(204, 176, 117) 3px solid;
+  border-radius: 10px 10px 10px 10px;
+  width: 60%;
+
+}
+
+h1,h2,h3{
+  font-family: verdana 
+
+}
+
+.mat-column-habilidades {
+  justify-content: center;
+ 
+}
+
+.mat-column-boton {
+  justify-content: center;
+ 
+}
+

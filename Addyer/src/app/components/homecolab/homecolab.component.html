@@ -1,0 +1,126 @@
+<ng-sidebar-container>
+    <!--Sidebar  -->
+    <ng-sidebar [opened]="opened">
+        <img src="https://scontent.fscl27-1.fna.fbcdn.net/v/t1.0-9/12644943_219927595018951_5026710537365350049_n.png?_nc_cat=105&_nc_sid=09cbfe&_nc_ohc=R7_AAlM-FfwAX9Hm9Iv&_nc_ht=scontent.fscl27-1.fna&oh=28e4b91c260bef52a32a2e3205b24665&oe=5F9EAA1F"
+            width="200" height="200" class="img-fluid rounded-circle" />
+        <p style="padding-left: 1.2em;">Sesión Colaborador</p>
+        <a mat-raised-button style="margin: 2em; background-color: #000000; color: #f4f4f4;"
+            (click)='toggleSidebar()'>Cerrar menú </a>
+        <ul class="menu">
+            <li><a style="color: #000000;" routerLink="/homecolab" (click)="toggleSidebar()">Inicio</a></li>
+            <li><a style="color: #000000;" routerLink="/profilecolab" (click)="toggleSidebar()">Perfil Colaborador</a>
+            </li>
+            <li><a style="color: #000000;" routerLink="/viewprojectscolab" (click)="toggleSidebar()">Proyectos
+                    Asignados</a></li>
+        </ul>
+    </ng-sidebar>
+    <!--Toolbar -->
+    <div ng-sidebar-content>
+        <mat-toolbar style="background-color: #000000; ">
+            <a mat-raised-button style="background-color: #cf7500; color: #f4f4f4;" (click)="toggleSidebar()">Abrir menú
+            </a>
+            <span class="example-spacer"></span>
+            <a mat-raised-button style="margin-left: 1em;" routerLink="" (click)="cerrarsesion()">Cerrar Sesión</a>
+        </mat-toolbar>
+        <!--Page Body  -->
+        <!DOCTYPE html>
+        <html>
+
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+            <link rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        </head>
+
+        <body>
+            <section>
+                <div class="container-fluid">
+                    <h1 class="text-center">Colaborador</h1>
+                    <!-- Card "proyectos Asignados"  -->
+                    <div class="row">
+                        <div class="col-md-6 p-0 col-sm-6 col-xs-12 col-sm-6">
+                            <div class="box " routerLink="/viewprojectscolab">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <i class="fa fa-handshake-o" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <h3>Proyectos Asignados</h3>
+                                        <p>Ver todos los proyectos asignados.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- card "Perfil" -->
+                        <div class="col-md-6 p-0 col-sm-6 col-xs-12">
+                            <div class="box" routerLink="/profilecolab">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <i class="fa fa-id-card" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <h3>Perfil</h3>
+                                        <p>Ver dato personales </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Imagen Central -->
+                    <img class="img-fluid" src="//fondationforge.org/assets/img/nosotros/header-nosotros.jpg" alt="" >
+                    <div class="centrado">
+                        <h3 style="font-weight: bold;" class="textoborde">Juntos cambiamos vidas</h3>
+                    </div>
+                    <!-- Inicio Carrusel  -->
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active text-center">
+                                <img src="https://www.flaticon.es/svg/static/icons/svg/2213/2213671.svg" class="mt-5"
+                                    width="100" height="100">
+                                <h5 class="mt-3 ">¡Próxima fiesta de Hallowen!</h5>
+                                <p>30-10-2020. Dirección: Ñuñoa 2233</p>
+                            </div>
+                            <div class="carousel-item text-center">
+                                <img src="https://image.flaticon.com/icons/svg/1087/1087815.svg" class="mt-5"
+                                    width="100" height="100">
+                                <h5 class="mt-3 ">¡Recuerda participar en nuestro concurso de Innovación!.</h5>
+                                <p>Fecha límite 26-10-2020</p>
+                            </div>
+                            <div class="carousel-item text-center">
+                                <img src="https://image.flaticon.com/icons/svg/3159/3159408.svg" class="mt-5"
+                                    width="100" height="100">
+                                <h5 class="mt-3 ">Cumpleaños del mes.</h5>
+                                <li>Sebastián Ferrada 10-10-2020</li>
+                                <li>Belén Zambeat 22-10-2020</li>
+                                <li>Juan Arraigada 30-09-2020</li>
+                            </div>
+                            <div class="carousel-item text-center">
+                                <img src="https://www.flaticon.es/svg/static/icons/svg/2631/2631384.svg" class="mt-5"
+                                    width="100" height="100">
+                                <h5 class="mt-3 ">¿Adquiriste Nuevas Habilidades?.</h5>
+                                <p>Recuerda agregarlas a tu perfil.</p>
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                            data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                            data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                    <!-- Final Carrusel -->
+
+                </div>
+            </section>
+        </body>
+
+        </html>
+        <!-- Final Sidebar  -->
+    </div>
+</ng-sidebar-container>
